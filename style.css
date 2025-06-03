@@ -1,0 +1,129 @@
+/* Remove margens e preenchimentos padrão */
+* {
+    padding: 0;
+    margin: 0;
+}
+
+/* Área do jogo */
+#game {
+    width: 600px;
+    height: 500px;
+    border: 1px solid black;
+    margin: auto;
+    margin-top: 50px;
+    overflow: hidden; /* Impede que elementos saiam da área visível */
+    position: relative;
+}
+
+/* Bloco preto (cano) que se move */
+#block {
+    width: 50px;
+    height: 500px;
+    background-color: black;
+    position: relative;
+    left: 600px; /* Começa fora da tela à direita */
+    animation: block 2s infinite linear; /* Move continuamente da direita para a esquerda */
+}
+
+/* Animação do bloco: move da direita para a esquerda */
+@keyframes block {
+    0% { left: 600px; }
+    100% { left: -50px; }
+}
+
+/* Buraco dentro do bloco que muda de posição */
+#hole {
+    display: none;
+    width: 50px;
+    height: 150px;
+    background-color: white;
+    position: relative;
+    left: 400px; /* Inicialmente mais à esquerda que o bloco (será ajustado) */
+    top: -500px; /* Sobrepõe o bloco preto, criando o buraco */
+    animation: block 2s infinite linear; /* Mesma animação do bloco */
+}
+
+#block, #hole {
+    animation: none;
+}
+
+
+/* Personagem */
+#character {
+    display: none;
+    width: 20px;
+    height: 20px;
+    background-color: red;
+    position: absolute;
+    top: 100px;
+    border-radius: 50%;
+    left: 50px;
+}
+
+/* Pontuação */
+
+#points, #high-score {
+    display: none;
+    position: absolute;
+    left: 10px;
+    top: 10px;
+    font-weight: 600;
+}
+
+#high-score {
+    top: 30px;
+}
+
+/* Botões de start e restart */
+#bnt-restart, #bnt-start {
+    display: none;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 10px 20px;
+    font-size: 18px;
+    background-color: black;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+#bnt-start {
+    display: block;
+}
+
+/* Adaptado para telas de celular */
+@media (max-width: 500px) {
+    #game {
+        width: 90vw;
+        height: 50vh;
+        margin: 20px auto;
+    }
+
+    #character {
+        width: 5vw;
+        height: 5vw;
+        left: 10vw;
+    }
+
+    #block, #hole {
+        width: 10vw;
+        left: 90vw;
+    }
+
+    #hole {
+        height: 20vh;
+    }
+
+    #points, #high_score {
+        font-size: 16px;
+    }
+
+    #bnt-start, #bnt-restart {
+        font-size: 14px;
+        padding: 8px 16px;
+    }
+}
